@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום הולדת שמח לניצני האהובה שלי</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Prevent horizontal scrollbar */
+        background-color: #f0f0f0;
+    }
+
+    #movingButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px 30px;
+        font-size: 24px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    #movingButton:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<button id="movingButton">!ניצני אהובה <br>!יום הולדת שמח</button>
+
+<script>
+    function moveButton() {
+        var button = document.getElementById('movingButton');
+        var x = parseInt(button.style.left) || 0;
+        var direction = 1;
+        var screenWidth = window.innerWidth;
+
+        function animate() {
+            x += direction;
+            button.style.left = x + 'px';
+
+            if (x >= screenWidth - button.offsetWidth || x <= 0) {
+                direction *= -1;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
+    window.onload = function() {
+        moveButton();
+    };
+
+    // Adjust button position on window resize (for mobile compatibility)
+    window.onresize = function() {
+        moveButton();
+    };
+</script>
+
+</body>
+</html>
